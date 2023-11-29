@@ -1,11 +1,17 @@
+"use client"
 import Image from "next/image"
+import { useState } from "react"
 export default function AnswerDetail(idAnswer:any) {
+    const [votes, setVotes] = useState(0);
+    const handleAddVotes = () => {
+        setVotes((prevVotes) => prevVotes + 1);
+    }
     return(
         <>
         <div className='border border-dark-muted px-6 py-5 my-5'>
             <div className='flex gap-5' id='headerQuestin'>
                 <div className='' id='questionRates'>
-                    <button>
+                    <button onClick={handleAddVotes}>
                     <Image
                         src={'/icons/upvoteIcon.svg'}
                         alt='Ikon vote jawaban'
@@ -13,7 +19,7 @@ export default function AnswerDetail(idAnswer:any) {
                         height={29}
                     />
                     </button> {/*TODO-LIST*/}
-                    <h1 className='text-center text-lg'>{100}</h1> {/*TODO LIST*/}
+                    <h1 className='text-center text-lg'>{votes}</h1> {/*TODO LIST*/}
                 </div>
                 <div className='grid grid-rows-2' id='uploaderDetail'>
                     <div className='flex gap-4 items-center' id='userDetail'>

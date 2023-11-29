@@ -32,18 +32,6 @@ export default function Navigation({activePage}:any) {
                     <h2 className='px-2'>Trending</h2>
                 </a>
             </nav>
-            <h1 className='border-t-2 border-mid-muted'>Lainnya</h1>
-            <nav>
-                <a href='#' className='flex px-3 py-2 my-2'>
-                <Image
-                    src={'/icons/profileInfoIcon.svg'}
-                    alt='Ikon Informasi Akun'
-                    width={18}
-                    height={18}
-                />
-                <h2 className='px-2'>Profile</h2>
-                </a>
-            </nav>
         </div>
     )
 }

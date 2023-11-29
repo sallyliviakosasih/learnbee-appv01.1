@@ -1,11 +1,17 @@
+"use client"
+import { useState } from "react";
 import Image from "next/image";
-export default function Post()
-{
+export default function Post(){
+    const [votes, setVotes] = useState(0);
+    {/*TODO-LIST: Buat fungsi tersebut terhubung ke database*/}
+    const handleAddVotes = () => {
+        setVotes((prevVotes) => prevVotes + 1);
+    }
     return(
         <div className='border border-dark-muted my-8 px-6 py-5'>
             <div className='flex gap-5' id='headerQuestin'>
                 <div className='' id='questionRates'>
-                    <button>
+                    <button onClick={handleAddVotes}> 
                     <Image
                         src={'/icons/upvoteIcon.svg'}
                         alt='Ikon vote pertanyaan'
@@ -13,7 +19,7 @@ export default function Post()
                         height={29}
                     />
                     </button>
-                    <h1 className='text-center text-lg'>{100}</h1> {/*TODO LIST*/}
+                    <h1 className='text-center text-lg'>{votes}</h1> {/*TODO LIST*/}
                 </div>
                 <div className='grid grid-rows-2' id='uploaderDetail'>
                     <div className='flex gap-4 items-center' id='userDetail'>
