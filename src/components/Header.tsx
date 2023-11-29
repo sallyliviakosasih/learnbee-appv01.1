@@ -46,10 +46,10 @@ export default function Header({isLogged}: any) {
                     {isLogged &&
                         <div className='w-3/12 flex justify-center items-center gap-4' id='logged'>
                             <a href='/add-question' className='bg-primary-yellow text-contrast rounded-full font-medium px-4 py-2'>+ Ajukan pertanyaan</a>
-                            <a href='/add-question' className=''>
+                            <a href='/' className=''>
                             <Image
-                                src={'icons/notificationIcon.svg'}
-                                alt='Ikon Notifikasi'
+                                src={'/icons/homeIcon.svg'}
+                                alt='Ikon Halaman Utama'
                                 width={31}
                                 height={31}
                             />

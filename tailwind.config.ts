@@ -25,6 +25,7 @@ const config: Config = {
       'black': 'black',
       'white': 'white',
       'grey': '#ECEEF7',
+      'muted-grey': '#637C8A',
       'transparent': 'transparent',
     }
   },
