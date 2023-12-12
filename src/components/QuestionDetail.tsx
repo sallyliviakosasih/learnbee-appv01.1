@@ -56,11 +56,13 @@ export default function QuestionDetail(postInfo:any) {
                     }
                 </div>
             </div>
-            <div className="my-8">
+            { post != null &&
+                <div className="my-8">
                 <AnswerForm 
                     postInfo = {post}
                 />
             </div>
+            }
         </>
     )
 }
