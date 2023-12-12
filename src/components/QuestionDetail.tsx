@@ -48,7 +48,7 @@ export default function QuestionDetail(postInfo:any) {
                                 return(
                                     <>
                                         <a href='#' className='bg-grey text-darker-muted px-4 py-2 rounded-full' key={tag}>{tag}</a>
-                                        <a href='#' className='bg-grey text-darker-muted px-4 py-2 rounded-full' key={tag}>{tag}</a>
+
                                     </>
                                 )
                             }
