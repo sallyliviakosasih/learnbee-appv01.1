@@ -1,18 +1,19 @@
 import Header from "@/components/Header"
 import QuestionForm from "@/components/QuestionForm"
-export default function addQuestion() {
+import { getServerSession } from "next-auth";
+import { authOptions } from "@/lib/auth";
+
+
+export default async function addQuestion() {
+    const session = await getServerSession(authOptions);
     return (
         <>
-        <Header
-            isLogged={true} //TODO-LIST : Halaman ini hanya dapat diakses ketika sudah melakukan LOGIN
-        />
+        <Header logged={session}/>
         <main>
             <div className="px-36 py-12">
                 <h1 className="py-8 font-bold text-2xl">Ajukan Pertanyaan</h1>
                 <div className="grid grid-cols-3 gap-5">
-                    <div className="col-span-2 border-2 border-dark-muted rounded-lg px-10 py-7">
-                        <QuestionForm/>
-                    </div>
+                    <QuestionForm/>
                     <section>
                         <div className="bg-[#eceef7] p-6 rounded-md ">
                             <div className="text-[#637c8a] h-fit">

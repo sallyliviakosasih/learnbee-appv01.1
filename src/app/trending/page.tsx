@@ -1,11 +1,15 @@
 import Header from "@/components/Header";
 import Navigation from "@/components/Navigation";
 import Post from "@/components/Post";
+import { getServerSession } from "next-auth";
+import { authOptions } from "@/lib/auth";
 
-export default function Trending() {
+export default async function Trending() {
+    const session = await getServerSession(authOptions);
+    console.log(session);
     return (
         <>
-        <Header isLogged={false}/> {/*TODO LIST: Buat Session yang dapat menentukan nilai ini secara otomatis*/}
+        <Header logged={session}/>
         <main>
             <div className='grid grid-cols-5'>
                 <Navigation

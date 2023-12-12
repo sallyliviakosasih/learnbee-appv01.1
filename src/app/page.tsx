@@ -2,10 +2,26 @@ import Image from 'next/image'
 import Header from '@/components/Header'
 import Post from '@/components/Post'
 import Navigation from '@/components/Navigation'
-export default function Home() {
+import { getServerSession } from 'next-auth'
+import { authOptions } from '@/lib/auth'
+import { prisma } from '@/lib/db'
+export default async function Home() {
+  const session = await getServerSession(authOptions);
+  const posts = await prisma.post.findMany({
+    where: {published: true},
+    include: {
+      author: {
+        select: {
+          name: true,
+          stambuk: true,
+          jurusan: true,
+        }
+      }
+    }
+  })
   return (
     <>
-      <Header isLogged={false}/> {/*TODO LIST: Buat Session yang dapat menentukan nilai ini secara otomatis*/}
+      <Header logged={session}/>
       <main>
         <div className='grid grid-cols-5'>
           <Navigation
@@ -24,7 +40,17 @@ export default function Home() {
                 <h2 className='text-contrast font-medium mx-2'>Ajukan pertanyaan</h2>
               </a>
             </div>
-            <Post/>
+            {
+              posts.map((post) => (
+                <>
+                <div key={post.id}>
+                  <Post
+                    postInfo = {post}
+                  />   
+                </div>
+                </>
+              ))
+            }
           </div>
         </div>
       </main>

@@ -1,6 +1,11 @@
 import Image from "next/image"
-export default function Navigation({activePage}:any) {
+import { getServerSession } from "next-auth"
+import { authOptions } from "@/lib/auth"
+import SignOutButton from "./ui/SignOutButton";
+export default async function Navigation({activePage}:any) {
+    const session = await getServerSession(authOptions);
     return (
+        <>
         <div className='col-span-1 ml-10'>
             <h1>Feed</h1>
             <nav>
@@ -31,7 +36,26 @@ export default function Navigation({activePage}:any) {
                     />
                     <h2 className='px-2'>Trending</h2>
                 </a>
+                {session?.user? (
+                    <>
+                        <div className="flex px-3 py-2 my-2">
+                            <Image
+                                src={'/icons/userIcon.svg'}
+                                alt="Ikon User"
+                                width={18}
+                                height={18}
+                        />
+                            <h2 className="px-2">{session?.user?.name}</h2>
+                        </div>
+                        <div className="flex px-3 py-2 my-2">
+                            <SignOutButton/>
+                        </div>
+                    </>
+                ):(
+                    <></>
+                )}
             </nav>
         </div>
+        </>
     )
 }

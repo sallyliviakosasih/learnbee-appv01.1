@@ -1,19 +1,6 @@
 "use client"
 import Image from "next/image"
-import { useState } from "react";
-import LoginForm from "./LoginForm";
-import SignupForm from "./SignupForm";
-export default function Header({isLogged}: any) {
-    const [isModalLoginOpen, setIsModalLoginOpen] = useState(false);
-    const [isModalSignUpOpen, setIsModalSignUpOpen] = useState(false);
-
-    function toogleModalLogin () {
-        setIsModalLoginOpen(!isModalLoginOpen);
-    }
-
-    function toogleModalSignUp () {
-        setIsModalSignUpOpen(!isModalSignUpOpen);
-    }
+export default function Header({logged}: any) {
     return(
         <>
         <header>
@@ -35,15 +22,15 @@ export default function Header({isLogged}: any) {
                         />
                         </button>
                     </div>
-                    {!isLogged &&
+                    {!logged &&
                         <>
                         <div className='w-3/12 items-center flex justify-center' id='notLogged'>
-                            <a href='#' className='bg-primary-yellow text-contrast rounded-full font-medium px-4 py-2 mx-5' onClick={toogleModalLogin}>Masuk</a>
-                            <a href='#' className='border-2 rounded-full font-medium border-contrast px-4 py-2 mx-5' onClick={toogleModalSignUp}>Daftar</a>
+                            <a href='/login' className='bg-primary-yellow text-contrast rounded-full font-medium px-4 py-2 mx-5'>Masuk</a>
+                            <a href='/signup' className='border-2 rounded-full font-medium border-contrast px-4 py-2 mx-5'>Daftar</a>
                         </div>
                         </>
                     }
-                    {isLogged &&
+                    {logged!=null &&
                         <div className='w-3/12 flex justify-center items-center gap-4' id='logged'>
                             <a href='/add-question' className='bg-primary-yellow text-contrast rounded-full font-medium px-4 py-2'>+ Ajukan pertanyaan</a>
                             <a href='/' className=''>
@@ -66,20 +53,6 @@ export default function Header({isLogged}: any) {
                     }
                 </div>
         </header>
-        {isModalLoginOpen && 
-            <div className='fixed flex top-0 left-0 right-0 h-full z-10 bg-dark-muted/50 items-center justify-center' id='loginPopUpBg' tabIndex={-1}>
-                <LoginForm
-                    formAction = {toogleModalLogin}
-                />
-            </div>
-        }
-        {isModalSignUpOpen &&
-            <div className='fixed flex top-0 left-0 right-0 h-full z-10 bg-dark-muted/50 items-center justify-center' id='loginPopUpBg' tabIndex={-1}>
-            <SignupForm
-                formAction = {toogleModalSignUp}
-            />
-        </div>
-        }
-        </>
+    </>
     )
 }
