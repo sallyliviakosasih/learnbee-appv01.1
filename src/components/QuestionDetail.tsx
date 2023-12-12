@@ -2,6 +2,7 @@
 import Image from "next/image"
 import AnswerForm from "./AnswerForm"
 import { useState } from "react"
+import { useSession } from "next-auth/react";
 
 export default function QuestionDetail(postInfo:any) {
     {/*TODO-LIST: Buat fungsi ini terhubung ke database*/}
@@ -10,6 +11,7 @@ export default function QuestionDetail(postInfo:any) {
         setVotes((prevVotes) => prevVotes + 1);
     }
     const post = postInfo.postInfo;
+    const {data: session} = useSession();
     return (
         <>
             <div className='border border-dark-muted my-8 px-6 py-5'>
@@ -56,12 +58,13 @@ export default function QuestionDetail(postInfo:any) {
                     }
                 </div>
             </div>
-            { post != null &&
+            
+            {session?.user &&
                 <div className="my-8">
                 <AnswerForm 
                     postInfo = {post}
                 />
-            </div>
+                </div>
             }
         </>
     )
