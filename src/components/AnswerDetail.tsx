@@ -32,11 +32,10 @@ export default function AnswerDetail(postInfo:any) {
                             <h2>{post.author.jurusan}</h2> {/*TODO LIST*/}
                         </div>
                     </div>
-                    <h2 className='text-sm text-darker-muted' id='time'>{"2 Menit yang lalu"}</h2> {/*TODO LIST*/}
                 </div>
             </div>
             <div className='py-4' id='mainAnswer'>
-                <h1 className='font-bold text-lg'>{post.content}</h1> {/*TODO LIST*/}
+                <h1 className='font-semibold text-md'>{post.content}</h1> {/*TODO LIST*/}
             </div>
         </div>
         </>
